@@ -20,12 +20,21 @@ class Controller
     //Load view
     public function view($view, $data = [])
     {
-        // Chack for view file
+        // Check for view file
         if (file_exists('../app/views/' .  $view . '.php')) {
             require_once '../app/views/' .  $view . '.php';
         } else {
             //View doesn't exit
             die('View file not founds');
         }
+    }
+
+
+    //Load template
+    public function template($view, $data = [])
+    {
+        $this->view($view['header'], $data);
+        $this->view($view['page'], $data);
+        $this->view($view['footer'], $data);
     }
 }
