@@ -14,10 +14,27 @@ class Core
 
     public function __construct()
     {
-        //Dump::dd($this->getUrl());
+
 
         $url = $this->getUrl();
+        #Dump::dd($url);
+        $this->parseUrl($url);
+    }
 
+
+
+    public function getUrl()
+    {
+        if (isset($_GET['url'])) {
+            $url = rtrim($_GET['url'], '/');
+            $url = filter_var($url, FILTER_SANITIZE_URL);
+            $url = explode('/', $url);
+            return $url;
+        }
+    }
+
+    public function parseUrl($url)
+    {
         //Look in controller for first value
         if (file_exists('../app/controllers/' . ucwords($url[0]) . '.php')) {
             //if exists, set as controller class
@@ -49,17 +66,5 @@ class Core
 
         // Call a callback with array of parameters
         call_user_func_array((array)array($this->currentController, $this->currentMethod), $this->parameters);
-    }
-
-
-
-    public function getUrl()
-    {
-        if (isset($_GET['url'])) {
-            $url = rtrim($_GET['url'], '/');
-            $url = filter_var($url, FILTER_SANITIZE_URL);
-            $url = explode('/', $url);
-            return $url;
-        }
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-class Pages
+class Pages extends Controller
 {
 
 
@@ -10,10 +10,12 @@ class Pages
 
     public function index()
     {
+        $data = ['title' => 'Welcome'];
+        $this->view('pages/index', $data);
     }
 
-    public function about($id)
+    public function about()
     {
-        echo $id;
+        $this->view('pages/about');
     }
 }
