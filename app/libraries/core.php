@@ -42,6 +42,10 @@ class Core
 
             //Unset 0 Index
             unset($url[0]);
+        } else {
+            // Redirect if files don't exists to a 404 page
+            require_once '../app/views/error_pages/404.php';
+            exit("Error 404 <i>" . $url[0] . "</i> page not found");
         }
 
         //Require controller class

@@ -15,3 +15,6 @@ define('BASE_URL', '__BASE_URL__');
 
 //Site name
 define('SITE_NAME', '__APP_NAME__');
+
+//App version
+define('APP_VERSION', '1.0.1');
