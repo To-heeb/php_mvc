@@ -17,7 +17,7 @@ class Core
 
 
         $url = $this->getUrl();
-        #Dump::dd($url);
+        //Dump::dd($url);
         $this->parseUrl($url);
     }
 
@@ -36,7 +36,7 @@ class Core
     public function parseUrl($url)
     {
         //Look in controller for first value
-        if (file_exists('../app/controllers/' . ucwords($url[0]) . '.php')) {
+        if (!is_null($url) and file_exists('../app/controllers/' . ucwords($url[0]) . '.php')) {
             //if exists, set as controller class
             $this->currentController = ucwords($url[0]);
 
